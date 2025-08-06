@@ -17,9 +17,17 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector3 velocity = Vector3.zero;
 
+    void Update()
+    {
+        // Est ce que ya une demande de saut
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        {
+            isJumping = true;
+        }
+    }
 
-    // Calculer vitesse de mouvement
-    void FixedUpdate()
+        // Calculer vitesse de mouvement
+        void FixedUpdate()
     {
         // il crée une boite de collision entre les deux éléments, si sa entre en contacte avec quelque chose renvoie true 
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position, groundCheckRight.position);
@@ -27,11 +35,7 @@ public class PlayerMovement : MonoBehaviour
         // Calculer vitesse de mouvement horizontal
         float horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 
-        // Est ce que ya une demande de saut
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
-        {
-            isJumping = true;
-        }
+       
 
         // Effectuer le mouvement
         MovePlayer(horizontalMovement);
