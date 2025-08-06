@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyPatrol : MonoBehaviour
 {
-
+    public SpriteRenderer graphics;
     public float speed;
     public Transform[] waypoints;
 
@@ -26,6 +26,7 @@ public class EnemyPatrol : MonoBehaviour
         {
             destPoint = (destPoint + 1) % waypoints.Length;
             target = waypoints[destPoint];
+            graphics.flipX = !graphics.flipX;
         }
     }
 }
