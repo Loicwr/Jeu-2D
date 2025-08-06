@@ -15500,9 +15500,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f211cf8603bf1ce43b018eb7df2f542f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealt: 100
+  maxHealth: 100
   currentHealth: 0
-  healthBar: {fileID: 0}
+  healthBar: {fileID: 1242735945}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -15950,6 +15950,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcbc9b522c1e6484fa30e520af6fe4c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slider: {fileID: 1242735944}
+  gradient:
+    serializedVersion: 2
+    key0: {r: 0.96981126, g: 0, b: 0, a: 1}
+    key1: {r: 0.9924528, g: 0.54236007, b: 0, a: 1}
+    key2: {r: 0.30094424, g: 0.8867924, b: 0.20496619, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 3
+    m_NumAlphaKeys: 2
+  fill: {fileID: 1570942037}
 --- !u!1 &1267438996
 GameObject:
   m_ObjectHideFlags: 0
