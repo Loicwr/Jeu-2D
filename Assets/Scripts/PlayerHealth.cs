@@ -1,10 +1,14 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-   public int currentHealth;
+    public int currentHealth;
 
+
+    public bool isInvincible = false;
+    public SpriteRenderer graphics;
     public HealthBar healthBar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,9 +25,24 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(20);
         }
     }
-    void TakeDamage(int damage)
+        public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
+        if (!isInvincible)
+        {
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+        }
+    }
+
+    public IEnumerator InvincibilityFlash()
+    {
+        while (isInvincible)
+        {
+            // Flash effect
+            graphics.color = new Color(1f, 1f, 1f, 0f); // semi-transparent
+            yield return new WaitForSeconds(1f);
+            graphics.color = new Color(1f, 1f, 1f, 1f);
+            yield return new WaitForSeconds(1f);
+        }
     }
 }

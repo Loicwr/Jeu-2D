@@ -4785,6 +4785,7 @@ MonoBehaviour:
   waypoints:
   - {fileID: 839298571}
   - {fileID: 1026665648}
+  damageOnCollision: 20
 --- !u!61 &500945708
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4819,7 +4820,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.07891178, y: -0.64864767}
+  m_Offset: {x: -0.030211449, y: -0.64864767}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -4829,7 +4830,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.83236885, y: 0.70270467}
+  m_Size: {x: 1.1523952, y: 0.70270467}
   m_EdgeRadius: 0
 --- !u!212 &500945709
 SpriteRenderer:
@@ -15391,7 +15392,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.06553662, y: -0.23035383}
+  m_Offset: {x: -0.049423695, y: -0.23035383}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -15401,7 +15402,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.2174432, y: 1.4067755}
+  m_Size: {x: 1.2496691, y: 1.4067755}
   m_EdgeRadius: 0
 --- !u!50 &573658298
 Rigidbody2D:
@@ -15502,6 +15503,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 0
+  isInvincible: 0
+  graphics: {fileID: 0}
   healthBar: {fileID: 1242735945}
 --- !u!1 &619394800
 GameObject:
