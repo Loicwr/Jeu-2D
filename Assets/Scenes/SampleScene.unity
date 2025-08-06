@@ -14395,6 +14395,8 @@ MonoBehaviour:
   groundCheckLeft: {fileID: 212690488}
   groundCheckRight: {fileID: 784083839}
   rb: {fileID: 573658298}
+  animator: {fileID: 573658299}
+  spriteRenderer: {fileID: 573658295}
 --- !u!212 &573658295
 SpriteRenderer:
   m_ObjectHideFlags: 0
