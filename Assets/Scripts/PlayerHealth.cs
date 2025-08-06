@@ -6,9 +6,11 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
-
+    public float invincibilityTimeAfterHit = 3f; 
     public bool isInvincible = false;
     public SpriteRenderer graphics;
+    public float invincibilityFlashdelay = 0.15f;
+
     public HealthBar healthBar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -31,6 +33,9 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
+            isInvincible = true;
+            StartCoroutine(InvincibilityFlash());
+            StartCoroutine(HandleInvincibilityDelay());
         }
     }
 
@@ -40,9 +45,14 @@ public class PlayerHealth : MonoBehaviour
         {
             // Flash effect
             graphics.color = new Color(1f, 1f, 1f, 0f); // semi-transparent
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(invincibilityFlashdelay);
             graphics.color = new Color(1f, 1f, 1f, 1f);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(invincibilityFlashdelay);
         }
+    }
+    public IEnumerator HandleInvincibilityDelay() 
+    {
+     yield return new WaitForSeconds(invincibilityTimeAfterHit); 
+        isInvincible = false;  
     }
 }
