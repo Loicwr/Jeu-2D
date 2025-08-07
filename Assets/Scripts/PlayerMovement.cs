@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping;
     private bool isGrounded;
+    private bool isClimbing;
 
 
     public Transform groundCheck;
@@ -52,15 +53,21 @@ public class PlayerMovement : MonoBehaviour
 
     void MovePlayer(float _horizontalMovement)
     {
-        // Calculer vélocité de notre cible ( personnage vers le prochain mouvement)
-        Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.linearVelocity.y);
-        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, 0.05f);
+        if(!isClimbing)
+        {// Calculer vélocité de notre cible ( personnage vers le prochain mouvement)
+            Vector3 targetVelocity = new Vector2(_horizontalMovement, rb.linearVelocity.y);
+            rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, 0.05f);
 
-        if (isJumping == true)
-        {
-            rb.AddForce(new Vector2(0f, jumpForce));
-            isJumping = false;
+            if (isJumping)
+            {
+                rb.AddForce(new Vector2(0f, jumpForce));
+                isJumping = false;
+            }
         }
+    } else 
+    {
+        // déplacement vertical 
+
     }
 
     void Flip(float _velocity)
