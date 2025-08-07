@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     private bool isJumping;
     private bool isGrounded;
-    private bool isClimbing;
+    public bool isClimbing;
 
 
     public Transform groundCheck;
@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
+    private float verticalMovement;
 
     void Update()
     {
@@ -42,16 +43,18 @@ public class PlayerMovement : MonoBehaviour
        
         void FixedUpdate()
          {
+        // Calculer vitesse de mouvement horizontal et vertical
+        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        verticalMovement = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
+
         // il crée une boite de collision
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
 
-        // Calculer vitesse de mouvement horizontal
-        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
         // Effectuer le mouvement
-        MovePlayer(horizontalMovement);
+        MovePlayer(horizontalMovement, verticalMovement);
           }
 
-    void MovePlayer(float _horizontalMovement)
+    void MovePlayer(float _horizontalMovement, float _verticalMovement)
     {
         if(!isClimbing)
         {// Calculer vélocité de notre cible ( personnage vers le prochain mouvement)
@@ -64,10 +67,13 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = false;
             }
         }
-    } else 
-    {
+             else 
+             {
         // déplacement vertical 
+         Vector3 targetVelocity = new Vector2(rb.linearVelocity.x, _verticalMovement);
+         rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, 0.05f);
 
+             }
     }
 
     void Flip(float _velocity)
