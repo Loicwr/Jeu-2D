@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
              else 
              {
         // déplacement vertical 
-         Vector3 targetVelocity = new Vector2(rb.linearVelocity.x, _verticalMovement);
+         Vector3 targetVelocity = new Vector2(0, _verticalMovement);
          rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, 0.05f);
 
              }

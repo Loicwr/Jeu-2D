@@ -5,19 +5,30 @@ public class Ladder : MonoBehaviour
 
     private bool isInRange;
     private PlayerMovement playerMovement;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public BoxCollider2D collider;
+
+   
     void Awake()
     {
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
-        if(isInRange && Input.GetKeyDown(KeyCode.E))
+        if(playerMovement.isClimbing && Input.GetKeyDown(KeyCode.E))
+        {
+            // descendre de l'échelle
+            playerMovement.isClimbing = false;
+            collider.isTrigger = false;
+            return;
+        }
+        // Si le joueur est dans la zone de la échelle et appuie sur E, il commence à grimper
+        if (isInRange && Input.GetKeyDown(KeyCode.E))
         {
             playerMovement.isClimbing = true;
-          
+            collider.isTrigger = true;
+
         }
     }
 
@@ -35,6 +46,7 @@ public class Ladder : MonoBehaviour
         {
             isInRange = false;
             playerMovement.isClimbing = false;
+            collider.isTrigger = false;
         }
     }
 }
