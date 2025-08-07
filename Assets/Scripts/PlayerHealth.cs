@@ -11,6 +11,19 @@ public class PlayerHealth : MonoBehaviour
     public SpriteRenderer graphics;
     public float invincibilityFlashdelay = 0.15f;
 
+    public static PlayerHealth instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            // si il y a 2 scripts de vie du joueur, c'est pour qu'on soit prévenu 
+            Debug.LogWarning("Il y a plus d'une instance vie du joueur dans la scène");
+            return;
+        }
+        instance = this;
+    }
+
     public HealthBar healthBar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +40,21 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(20);
         }
     }
-        public void TakeDamage(int damage)
+
+    public void HealPlayer(int amount)
+    {
+        if((currentHealth + amount) > maxHealth)
+        {
+            currentHealth = maxHealth; // ne pas dépasser la vie maximale
+        } else
+        {
+            currentHealth += amount;
+        }
+            
+        healthBar.SetHealth(currentHealth);
+    }
+
+    public void TakeDamage(int damage)
     {
         if (!isInvincible)
         {
@@ -38,6 +65,7 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(HandleInvincibilityDelay());
         }
     }
+
 
     public IEnumerator InvincibilityFlash()
     {
