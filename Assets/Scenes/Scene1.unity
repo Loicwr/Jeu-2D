@@ -15198,7 +15198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
+  m_Color: {r: 0.047169805, g: 0.04605731, b: 0.04605731, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -16452,7 +16452,7 @@ PrefabInstance:
     - target: {fileID: 3557467463591059066, guid: bfb449e3704f3c140b91e4bf54bae573, type: 3}
       propertyPath: fadeSystem
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 648502054}
     - target: {fileID: 6657886234201018513, guid: bfb449e3704f3c140b91e4bf54bae573, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.01
