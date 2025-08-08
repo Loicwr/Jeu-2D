@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
@@ -20,9 +21,23 @@ public class GameOverManager : MonoBehaviour
 
     public void OnPlayerDeath()
     {
-        if (!gameOverUI) { Debug.LogError("Assigne gameOverUI"); return; }
         gameOverUI.SetActive(true);
     }
    
-    
+    public void RetryButton()
+    {
+        // Recharge la scène 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        // Replace le jour au spawn
+        // Réactive les mouvements du joueur + qu'on lui rende sa vie 
+        gameOverUI.SetActive(false);
+    }
+    public void MainMenuButton()
+    {
+
+    }
+    public void QuitButton()
+    {
+        Application.Quit();
+    }
 }

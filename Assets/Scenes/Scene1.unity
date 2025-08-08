@@ -17694,7 +17694,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 878585138}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1911636197}
+        m_TargetAssemblyTypeName: GameOverManager, Assembly-CSharp
+        m_MethodName: RetryButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &878585138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18210,7 +18222,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1293009226}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1911636197}
+        m_TargetAssemblyTypeName: GameOverManager, Assembly-CSharp
+        m_MethodName: QuitButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1293009226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18467,7 +18491,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1435303017}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1911636197}
+        m_TargetAssemblyTypeName: GameOverManager, Assembly-CSharp
+        m_MethodName: MainMenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1435303017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19408,6 +19444,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &9350209796395159
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1013773781885066437, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_Name
+      value: CurrentSceneManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 366.93613
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 270.51736
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
 --- !u!1001 &445644968688816005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19917,3 +20010,4 @@ SceneRoots:
   - {fileID: 2375534238270536805}
   - {fileID: 503311603744740951}
   - {fileID: 445644968688816005}
+  - {fileID: 9350209796395159}
