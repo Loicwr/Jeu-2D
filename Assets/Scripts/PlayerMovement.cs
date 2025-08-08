@@ -22,10 +22,25 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
+    public CapsuleCollider2D playerCollider;
 
     private Vector3 velocity = Vector3.zero;
     private float horizontalMovement;
     private float verticalMovement;
+
+
+    public static PlayerMovement instance;
+
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            // si il y a 2 scripts de mouvement, c'est pour qu'on soit prévenu 
+            Debug.LogWarning("Il y a plus d'une instance de mouvement dans la scène");
+            return;
+        }
+        instance = this;
+    }
 
     void Update()
     {

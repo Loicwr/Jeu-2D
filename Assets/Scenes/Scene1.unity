@@ -17346,6 +17346,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6174599828787649775, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
   m_PrefabInstance: {fileID: 3919479157883418779}
   m_PrefabAsset: {fileID: 0}
+--- !u!70 &573658294 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6860141040650822276, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
+  m_PrefabInstance: {fileID: 3919479157883418779}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -17640,7 +17645,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.45000002, y: 0.5}
   m_AnchorMax: {x: 0.45000002, y: 0.5}
-  m_AnchoredPosition: {x: -1372, y: 52.121}
+  m_AnchoredPosition: {x: -1485.1, y: 137.1}
   m_SizeDelta: {x: 251.6807, y: 53.3401}
   m_Pivot: {x: -4.053345, y: -1.8577117}
 --- !u!114 &1242735944
@@ -17853,10 +17858,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5448748551300540919, guid: e15c02b1c7c13a642a8196e33dbe5708, type: 3}
       propertyPath: m_Name
-      value: PlayerSpawn
-      objectReference: {fileID: 0}
-    - target: {fileID: 5448748551300540919, guid: e15c02b1c7c13a642a8196e33dbe5708, type: 3}
-      propertyPath: m_TagString
       value: PlayerSpawn
       objectReference: {fileID: 0}
     - target: {fileID: 6327458967370461753, guid: e15c02b1c7c13a642a8196e33dbe5708, type: 3}
@@ -19000,11 +19001,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7037872480098223093, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.5
+      value: -6.519
       objectReference: {fileID: 0}
     - target: {fileID: 7037872480098223093, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.03
+      value: -1.049
       objectReference: {fileID: 0}
     - target: {fileID: 7037872480098223093, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19042,6 +19043,10 @@ PrefabInstance:
       propertyPath: climbSpeed
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 8744811303886791801, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
+      propertyPath: playerCollider
+      value: 
+      objectReference: {fileID: 573658294}
     - target: {fileID: 8989359700164996170, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
       propertyPath: healthBar
       value: 
