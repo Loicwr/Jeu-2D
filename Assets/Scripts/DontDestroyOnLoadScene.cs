@@ -23,7 +23,7 @@ public class DontDestroyOnLoadScene : MonoBehaviour
         }
     }
    
-    void RemoveFromDontDestroyOnLoad()
+    public void RemoveFromDontDestroyOnLoad()
     {
         foreach (var element in objects)
         {
