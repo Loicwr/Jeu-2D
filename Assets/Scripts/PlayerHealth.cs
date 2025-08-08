@@ -76,8 +76,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        // bloquer les mouvements du personnage
-        Debug.Log("Le joueur est éliminé"); 
+        // bloquer les mouvements du personnage 
         PlayerMovement.instance.enabled = false;
 
         // jouer l'animation d'élimination 
@@ -88,6 +87,23 @@ public class PlayerHealth : MonoBehaviour
         PlayerMovement.instance.playerCollider.enabled = false;
 
         GameOverManager.instance.OnPlayerDeath();
+    }
+
+    public void Respawn()
+    {
+        
+        PlayerMovement.instance.enabled = true;
+
+      
+        PlayerMovement.instance.animator.SetTrigger("Respawn");
+
+       
+        PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Dynamic;
+        PlayerMovement.instance.playerCollider.enabled = true;
+
+        currentHealth = maxHealth;
+        healthBar.SetHealth(currentHealth);
+
     }
 
 

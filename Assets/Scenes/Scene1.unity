@@ -19456,6 +19456,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CurrentSceneManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1925717134123305249, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
+      propertyPath: isPlayerPresentByDefault
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3371517467720682976, guid: a3075a5d43694a44e9d874ae41099d50, type: 3}
       propertyPath: m_LocalPosition.x
       value: 366.93613
