@@ -44,8 +44,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Calculer vitesse de mouvement horizontal et vertical
+        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.fixedDeltaTime;
+        verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.fixedDeltaTime;
+
         // Est ce que ya une demande de saut
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        if (Input.GetButtonDown("Jump") && isGrounded && !isClimbing)
         {
             isJumping = true;
         }
@@ -55,16 +59,12 @@ public class PlayerMovement : MonoBehaviour
         // envoie la vitesse horizontal
         float characterVelocity = Mathf.Abs(rb.linearVelocity.x);
         animator.SetFloat("Speed", rb.linearVelocity.x);
-
         animator.SetBool("isClimbing", isClimbing);
     }
 
        
         void FixedUpdate()
          {
-        // Calculer vitesse de mouvement horizontal et vertical
-        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
-        verticalMovement = Input.GetAxis("Vertical") * climbSpeed * Time.deltaTime;
 
         // il crée une boite de collision
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, collisionLayers);
