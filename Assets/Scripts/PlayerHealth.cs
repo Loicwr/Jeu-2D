@@ -17,8 +17,8 @@ public class PlayerHealth : MonoBehaviour
     {
         if (instance != null)
         {
-            // si il y a 2 scripts de vie du joueur, c'est pour qu'on soit prévenu 
-            Debug.LogWarning("Il y a plus d'une instance vie du joueur dans la scène");
+            // si il y a 2 scripts de vie du joueur, c'est pour qu'on soit prï¿½venu 
+            Debug.LogWarning("Il y a plus d'une instance vie du joueur dans la scï¿½ne");
             return;
         }
         instance = this;
@@ -45,7 +45,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if((currentHealth + amount) > maxHealth)
         {
-            currentHealth = maxHealth; // ne pas dépasser la vie maximale
+            currentHealth = maxHealth; // ne pas dï¿½passer la vie maximale
         } else
         {
             currentHealth += amount;
@@ -79,11 +79,12 @@ public class PlayerHealth : MonoBehaviour
         // bloquer les mouvements du personnage 
         PlayerMovement.instance.enabled = false;
 
-        // jouer l'animation d'élimination 
+        // jouer l'animation d'ï¿½limination 
         PlayerMovement.instance.animator.SetTrigger("Die");
 
-        // empêcher les interactions physique avec les autres éléments de la scène  
+        // empï¿½cher les interactions physique avec les autres ï¿½lï¿½ments de la scï¿½ne  
         PlayerMovement.instance.rb.bodyType = RigidbodyType2D.Kinematic;
+        PlayerMovement.instance.rb.linearVelocity = Vector3.zero; 
         PlayerMovement.instance.playerCollider.enabled = false;
 
         GameOverManager.instance.OnPlayerDeath();
