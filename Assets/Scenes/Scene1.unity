@@ -20229,7 +20229,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2442709119811775466, guid: 077704d247ecc6241a9b94faf5c0037d, type: 3}
       propertyPath: damageOnCollision
-      value: 100
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3688983226993992126, guid: 077704d247ecc6241a9b94faf5c0037d, type: 3}
       propertyPath: m_LocalPosition.x
