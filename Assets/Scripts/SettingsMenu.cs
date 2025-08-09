@@ -33,6 +33,8 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropDown.AddOptions(options);
         resolutionDropDown.value = currentResolutionIndex;
         resolutionDropDown.RefreshShownValue();
+
+        Screen.fullScreen = true; // Définit le mode plein écran par défaut
     }
 
     public void SetVolume(float volume)
