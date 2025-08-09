@@ -30,9 +30,11 @@ public class GameOverManager : MonoBehaviour
    
     public void RetryButton()
     {
+        Inventory.instance.RemoveCoins(CurrentSceneManager.instance.coinsPickedUpInThisSceneCount);
         // Recharge la scène 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        // Replace le jour au spawn
+        // Replace le joueur au spawn
+        PlayerHealth.instance.Respawn();
         // Réactive les mouvements du joueur + qu'on lui rende sa vie 
         gameOverUI.SetActive(false);
     }
