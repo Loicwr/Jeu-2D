@@ -1,74 +1,44 @@
-using System.Collections;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
 public class PlayerPush : MonoBehaviour
 {
-    [Header("Tag de la cible (ex: 'Boss')")]
-    [SerializeField] private string bossTag = "Boss";
+    public float pushForce = 12f;          // force que le joueur applique au boss
+    public float maxBossSpeed = 5f;        // limite de vitesse du boss
+    public float pushWindow = 0.2f;        // durée où l'AI du boss est suspendue
 
-    [Header("Poussée")]
-    [SerializeField] private float pushImpulse = 8f;
-    [SerializeField] private float pushCooldown = 0.2f;
+    private Rigidbody2D rbPlayer;
 
-    [Header("Stabilité")]
-    [Tooltip("Coupe toute vitesse verticale ascendante de la cible après la poussée.")]
-    [SerializeField] private bool clampUpwardVelocityAfterPush = true;
-
-    [Tooltip("Ignorer brièvement la collision après la poussée pour éviter les doubles-impulsions.")]
-    [SerializeField] private bool tempIgnoreCollision = true;
-    [SerializeField] private float ignoreDuration = 0.1f;
-
-    private float _lastPushTime = -999f;
-    private Collider2D _myCol;
-
-    private void Awake()
+    void Awake()
     {
-        _myCol = GetComponent<Collider2D>();
-        // Optionnel : stabilise la physique
-        var rb = GetComponent<Rigidbody2D>();
-        rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        rb.freezeRotation = true;
+        rbPlayer = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) => TryPush(collision);
-    private void OnCollisionStay2D (Collision2D collision) => TryPush(collision);
-
-    private void TryPush(Collision2D collision)
+    void OnCollisionStay2D(Collision2D collision)
     {
-        if (!collision.collider || !collision.collider.CompareTag(bossTag)) return;
-        if (Time.time - _lastPushTime < pushCooldown) return;
+        if (!collision.collider.CompareTag("Boss")) return;
 
-        var bossRb = collision.rigidbody;
-        if (!bossRb) return;
+        float h = Input.GetAxisRaw("Horizontal");
+        if (Mathf.Abs(h) < 0.1f) return;
 
-        // direction strictement horizontale (aucune composante Y)
-        float dx = Mathf.Sign(collision.transform.position.x - transform.position.x);
-        if (dx == 0f) dx = 1f;
-        Vector2 dir = new Vector2(dx, 0f);
+        Rigidbody2D rbBoss = collision.rigidbody ?? collision.collider.GetComponent<Rigidbody2D>();
+        if (rbBoss == null) return;
 
-        bossRb.AddForce(dir * pushImpulse, ForceMode2D.Impulse);
+        // Limite optionnelle
+        if (rbBoss.linearVelocity.magnitude >= maxBossSpeed) return;
 
-        if (clampUpwardVelocityAfterPush)
+        // Poussée horizontale seulement
+        Vector2 pushDir = new Vector2(Mathf.Sign(h), 0f);
+
+        // Fenêtre de push : on passe par le script du boss
+        BossPush bossPush = collision.collider.GetComponent<BossPush>();
+        if (bossPush != null)
         {
-            Vector2 v = bossRb.linearVelocity;
-            if (v.y > 0f) v.y = 0f;
-            bossRb.linearVelocity = v;
+            bossPush.ApplyExternalPush(pushDir * pushForce, pushWindow);
         }
-
-        if (tempIgnoreCollision && _myCol)
-            StartCoroutine(TempIgnoreCollision(_myCol, collision.collider, ignoreDuration));
-
-        _lastPushTime = Time.time;
-    }
-
-    private IEnumerator TempIgnoreCollision(Collider2D a, Collider2D b, float duration)
-    {
-        if (a && b)
+        else
         {
-            Physics2D.IgnoreCollision(a, b, true);
-            yield return new WaitForSeconds(duration);
-            Physics2D.IgnoreCollision(a, b, false);
+            // Fallback si pas de script BossPush
+            rbBoss.AddForce(pushDir * pushForce, ForceMode2D.Impulse);
         }
     }
 }
