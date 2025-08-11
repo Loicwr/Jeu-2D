@@ -8,21 +8,28 @@ public class BossActivator : MonoBehaviour
     public GameObject PlateFormeMobile; // Plateforme à déverrouiller
     public float verticalOffset = 0.1f; // Décalage pour ne pas faire tomber le boss dans la plateforme
 
-    private void OnTriggerEnter2D(Collider2D other)
+private void OnTriggerEnter2D(Collider2D other)
+{
+    if (other.CompareTag("Player"))
     {
-        if (other.CompareTag("Player"))
+        if (Boss != null && BossSpawn != null)
         {
-            if (Boss != null && BossSpawn != null)
-            {
-                ActivateBoss();
-            }
+            ActivateBoss();
+        }
 
-            if (PlateFormeMobile != null)
-            {
-                ActivatePlateforme();
-            }
+        if (PlateFormeMobile != null)
+        {
+            ActivatePlateforme();
+        }
+
+        // Désactiver juste le collider du trigger
+        Collider2D triggerCollider = GetComponent<Collider2D>();
+        if (triggerCollider != null)
+        {
+            triggerCollider.enabled = false;
         }
     }
+}
 
     private void ActivateBoss()
     {
