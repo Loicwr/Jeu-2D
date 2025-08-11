@@ -12,11 +12,15 @@ public class DeathZone : MonoBehaviour
         fadeSystem = GameObject.FindGameObjectWithTag("FadeSystem").GetComponent<Animator>();
     }
 
-   private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             StartCoroutine(ReplacePlayer(collision));
+        }
+        else if (collision.CompareTag("Boss"))
+        {
+            KillBoss(collision.gameObject);
         }
     }
 
@@ -25,5 +29,16 @@ public class DeathZone : MonoBehaviour
         fadeSystem.SetTrigger("FadeIn");
         yield return new WaitForSeconds(1f);
         collision.transform.position = playerSpawn.position;
+    }
+
+    private void KillBoss(GameObject boss)
+    {
+        BossActivator activator = FindObjectOfType<BossActivator>();
+        if (activator != null)
+        {
+            activator.OnBossDeath();
+        }
+
+        boss.SetActive(false); // Désactive le boss actuel
     }
 }

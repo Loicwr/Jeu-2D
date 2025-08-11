@@ -4,35 +4,32 @@ using System.Collections;
 public class BossActivator : MonoBehaviour
 {
     public GameObject Boss;             // Ton boss désactivé au début
-    public Transform BossSpawn;         // Point de spawn du boss
+    public Transform BossSpawn;         // Point de spawn existant
     public GameObject PlateFormeMobile; // Plateforme à déverrouiller
-    public float verticalOffset = 0.1f; // Décalage pour ne pas faire tomber le boss dans la plateforme
+    public float verticalOffset = 0.1f; // Décalage pour éviter la chute
 
-private void OnTriggerEnter2D(Collider2D other)
-{
-    if (other.CompareTag("Player"))
+    [Header("Respawn Settings")]
+    public int maxRespawns = 3;          // Nombre max de vies
+    private int currentRespawns = 0;     // Compteur
+
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (Boss != null && BossSpawn != null)
+        if (other.CompareTag("Player") && currentRespawns < maxRespawns)
         {
             ActivateBoss();
-        }
-
-        if (PlateFormeMobile != null)
-        {
             ActivatePlateforme();
-        }
 
-        // Désactiver juste le collider du trigger
-        Collider2D triggerCollider = GetComponent<Collider2D>();
-        if (triggerCollider != null)
-        {
-            triggerCollider.enabled = false;
+            // Désactiver le collider du trigger pour éviter réactivation immédiate
+            Collider2D triggerCollider = GetComponent<Collider2D>();
+            if (triggerCollider != null)
+                triggerCollider.enabled = false;
         }
     }
-}
 
     private void ActivateBoss()
     {
+        if (Boss == null || BossSpawn == null) return;
+
         Boss.SetActive(true);
         Boss.transform.position = BossSpawn.position + Vector3.up * verticalOffset;
 
@@ -41,7 +38,7 @@ private void OnTriggerEnter2D(Collider2D other)
         {
             rb.linearVelocity = Vector2.zero;
             rb.angularVelocity = 0f;
-            rb.Sleep(); // Réinitialise le corps physique
+            rb.Sleep();
         }
 
         StartCoroutine(ReenableColliderNextFrame());
@@ -49,11 +46,11 @@ private void OnTriggerEnter2D(Collider2D other)
 
     private void ActivatePlateforme()
     {
+        if (PlateFormeMobile == null) return;
+
         Rigidbody2D rb = PlateFormeMobile.GetComponent<Rigidbody2D>();
         if (rb != null)
-        {
-            rb.constraints = RigidbodyConstraints2D.None; // Libère tous les axes
-        }
+            rb.constraints = RigidbodyConstraints2D.None;
     }
 
     private IEnumerator ReenableColliderNextFrame()
@@ -65,5 +62,26 @@ private void OnTriggerEnter2D(Collider2D other)
             yield return null;
             col.enabled = true;
         }
+    }
+
+    // Appelé par la DeathZone quand le boss meurt
+    public void OnBossDeath()
+    {
+        currentRespawns++;
+
+        if (currentRespawns < maxRespawns)
+        {
+            StartCoroutine(RespawnBossAfterDelay(1f));
+        }
+        else
+        {
+            Debug.Log("Boss mort définitivement");
+        }
+    }
+
+    private IEnumerator RespawnBossAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        ActivateBoss();
     }
 }
