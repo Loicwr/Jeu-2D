@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GlisseSurPlateformeMobile : MonoBehaviour
+public class GlisseSurPlateFormeMobile : MonoBehaviour
 {
     public float glisseForce = 10f;
     private Rigidbody2D rb;
@@ -15,7 +15,7 @@ public class GlisseSurPlateformeMobile : MonoBehaviour
         // Raycast vers le bas pour détecter la plateforme sous le personnage
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f);
 
-        if (hit.collider != null && hit.collider.gameObject.name == "PlateformeMobile")
+        if (hit.collider != null && hit.collider.gameObject.name == "PlateFormeMobile")
         {
             // Récupère la normale de la plateforme
             Vector2 normal = hit.normal;
