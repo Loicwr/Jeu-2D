@@ -20345,6 +20345,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5845041255018241434, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6174599828787649775, guid: f7ef2e28c7b8aa5449b523036d05d720, type: 3}
       propertyPath: m_Name
       value: characters_46
@@ -20474,6 +20478,10 @@ PrefabInstance:
     - target: {fileID: 1553899301193006913, guid: bfb449e3704f3c140b91e4bf54bae573, type: 3}
       propertyPath: m_Name
       value: door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3557467463591059066, guid: bfb449e3704f3c140b91e4bf54bae573, type: 3}
+      propertyPath: sceneName
+      value: Scene4
       objectReference: {fileID: 0}
     - target: {fileID: 3557467463591059066, guid: bfb449e3704f3c140b91e4bf54bae573, type: 3}
       propertyPath: fadeSystem
