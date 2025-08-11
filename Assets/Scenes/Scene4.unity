@@ -163,8 +163,8 @@ HingeJoint2D:
     m_MaximumMotorForce: 10000
   m_UseLimits: 0
   m_AngleLimits:
-    m_LowerAngle: 0
-    m_UpperAngle: 359
+    m_LowerAngle: -45
+    m_UpperAngle: 45
 --- !u!50 &356108223
 Rigidbody2D:
   serializedVersion: 5
@@ -177,7 +177,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1.5
@@ -202,7 +202,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 2bc8b2ff4317d104790a7711044b85b7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -537,11 +537,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6327458967370461753, guid: e15c02b1c7c13a642a8196e33dbe5708, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.01
+      value: 0.78
       objectReference: {fileID: 0}
     - target: {fileID: 6327458967370461753, guid: e15c02b1c7c13a642a8196e33dbe5708, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.02
+      value: -2.68
       objectReference: {fileID: 0}
     - target: {fileID: 6327458967370461753, guid: e15c02b1c7c13a642a8196e33dbe5708, type: 3}
       propertyPath: m_LocalPosition.z
