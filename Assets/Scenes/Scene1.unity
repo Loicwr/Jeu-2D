@@ -17458,6 +17458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pushForce: 10
+  maxBossSpeed: 5
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -20666,7 +20667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3557467463591059066, guid: bfb449e3704f3c140b91e4bf54bae573, type: 3}
       propertyPath: sceneName
-      value: Scene4
+      value: Scene2
       objectReference: {fileID: 0}
     - target: {fileID: 3557467463591059066, guid: bfb449e3704f3c140b91e4bf54bae573, type: 3}
       propertyPath: fadeSystem
