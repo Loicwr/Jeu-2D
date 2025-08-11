@@ -7,36 +7,29 @@ public class BossEdgeAvoider : MonoBehaviour
     [SerializeField] private float checkDistance = 0.5f;
 
     private Rigidbody2D rb;
-    private BossMovement bossMovement; // Remplace par le vrai nom de ton script d'IA
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        bossMovement = GetComponent<BossMovement>(); // adapte avec le nom exact de ton script
     }
 
     private void Update()
     {
-        bool groundAhead = Physics2D.Raycast(groundCheckFront.position, Vector2.down, checkDistance, groundLayer);
+        // On regarde le sol juste devant le boss
+        RaycastHit2D hit = Physics2D.Raycast(groundCheckFront.position, Vector2.down, checkDistance, groundLayer);
 
-        if (!groundAhead)
+        // Si pas de sol → on stoppe le déplacement IA (mais on ne bloque pas physiquement)
+        if (!hit)
         {
-            // stoppe immédiatement
-            rb.velocity = new Vector2(0f, rb.velocity.y);
-
-            // désactive le mouvement IA
-            if (bossMovement != null)
-                bossMovement.enabled = false;
-
-            // demi-tour
+            StopMovement();
             Flip();
         }
-        else
-        {
-            // réactive le mouvement IA si le sol est devant
-            if (bossMovement != null && !bossMovement.enabled)
-                bossMovement.enabled = true;
-        }
+    }
+
+    private void StopMovement()
+    {
+        // On stoppe uniquement la vitesse horizontale de l'IA
+        rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
     }
 
     private void Flip()
