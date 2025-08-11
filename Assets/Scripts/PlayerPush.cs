@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerPush : MonoBehaviour
 {
     public float pushForce = 10f;
+    public float maxBossSpeed = 5f;
     private Rigidbody2D rbPlayer;
 
     private void Awake()
@@ -14,14 +15,15 @@ public class PlayerPush : MonoBehaviour
     {
         if (collision.collider.CompareTag("Boss"))
         {
-            Rigidbody2D rbBoss = collision.collider.GetComponent<Rigidbody2D>();
-            if (rbBoss != null)
+            float horizontalInput = Input.GetAxisRaw("Horizontal");
+            if (Mathf.Abs(horizontalInput) > 0.1f)
             {
-                // Direction de poussée = vers l’extérieur depuis le joueur
-                Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
-
-                // Appliquer une force au boss
-                rbBoss.AddForce(pushDirection * pushForce);
+                Rigidbody2D rbBoss = collision.collider.GetComponent<Rigidbody2D>();
+                if (rbBoss != null && rbBoss.linearVelocity.magnitude < maxBossSpeed)
+                {
+                    Vector2 pushDirection = (collision.transform.position - transform.position).normalized;
+                    rbBoss.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+                }
             }
         }
     }
